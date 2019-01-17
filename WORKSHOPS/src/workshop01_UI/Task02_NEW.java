@@ -1,6 +1,7 @@
 package workshop01_UI;
 
 import java.awt.GridBagConstraints;
+
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -72,9 +73,11 @@ public class Task02_NEW extends JPanel {
 				calc(inputftf, res);
 			}
 		});
+
 	}
 
 	public void calc(JFormattedTextField ftf, JLabel lbl) {
+
 		if (ftf.getValue() != null) {
 			String date = ftf.getValue().toString();
 
@@ -82,19 +85,37 @@ public class Task02_NEW extends JPanel {
 			int month = Integer.parseInt(ftf.getValue().toString().substring(3, 5));
 			int year = Integer.parseInt(ftf.getValue().toString().substring(6));
 
+			// leapyear
+			int feb = 0;
+			if (year % 4 != 0)
+				feb = 28;
+			else if (year % 100 != 0)
+				feb = 29;
+			else if (year % 400 != 0)
+				feb = 28;
+			else
+				feb = 29;
+
+			int[] daysInMonth = { 0, 31, feb, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
 			if (day >= 1 && day <= 31 && month >= 1 && month <= 12) {
-				if (month == 1) {
-					month = 13;
-					year--;
-				} else if (month == 2) {
-					month = 14;
-					year--;
+				if (day <= daysInMonth[month]) {
+
+					if (month == 1) {
+						month = 13;
+						year--;
+					} else if (month == 2) {
+						month = 14;
+						year--;
+					}
+
+					int h = (day + ((26 * (month + 1)) / 10) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4)
+							+ (5 * (year / 100))) % 7;
+					lbl.setText(date + " is a " + days[h]);
+
+				} else {
+					lbl.setText(date + " is invalid!");
 				}
-
-				int h = (day + ((26 * (month + 1)) / 10) + (year % 100) + ((year % 100) / 4) + ((year / 100) / 4)
-						+ (5 * (year / 100))) % 7;
-				lbl.setText(date + " is a " + days[h]);
-
 			} else {
 				lbl.setText(date + " is invalid!");
 			}

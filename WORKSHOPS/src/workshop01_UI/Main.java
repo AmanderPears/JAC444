@@ -32,7 +32,7 @@ public class Main {
 		JPanel task1Panel = new JPanel(false);
 		task1Panel.setLayout(new GridLayout(1,1));
 		try {
-			task1Panel.add(new Task01());
+			task1Panel.add(new Task01_NEW());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
