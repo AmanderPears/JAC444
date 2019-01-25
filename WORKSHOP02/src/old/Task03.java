@@ -1,4 +1,4 @@
-package noUI;
+package old;
 
 import java.util.Scanner;
 
@@ -127,13 +127,13 @@ public class Task03 {
 	// 7. Return the first k number of digits from number.
 	// If the number of digits in number is less than k,
 	// return number.
-	private long subNum(Long n, int k) {
-		String s = Long.toString(n);
-		if (k <= s.length()) {
-			s = Long.toString(n).substring(0, k);
-		}
-
-		return Long.parseLong(s);
-	}
+//	private long subNum(Long n, int k) {
+//		String s = Long.toString(n);
+//		if (k <= s.length()) {
+//			s = Long.toString(n).substring(0, k);
+//		}
+//
+//		return Long.parseLong(s);
+//	}
 
 }

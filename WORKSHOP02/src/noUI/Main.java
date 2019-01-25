@@ -2,6 +2,9 @@ package noUI;
 
 import java.util.Scanner;
 
+import old.Task01_NEW;
+import tasks.*;
+
 public class Main {
 
 	/** Main entry point for workshop tasks */
@@ -48,9 +51,9 @@ public class Main {
 				if (choice == 1)
 					new Task01_NEW(getInput);
 				else if (choice == 2)
-					new Task02(getInput);
+					new Task2(getInput);
 				else if (choice == 3)
-					new Task03(getInput);
+					new Task3(getInput);
 				System.out.format("\nTask %d Terminated.\n", choice);
 
 				System.out.print("Press 'y' to repeat previous program. ");
