@@ -23,7 +23,8 @@ public class Task1 {
 		int miss = 0;
 		boolean badGuess;
 		do {
-			System.out.format("(Guess) Enter a letter in word %s > ", word);
+			// System.out.format("(Guess) Enter a letter in word %s > ", word);
+			System.out.format("(Lives:%d) Guess a letter in word %s > ", 8 - miss, word);
 			badGuess = !word.guess(getInput.next().toLowerCase().charAt(0));
 			miss = badGuess ? miss + 1 : miss;
 		} while (!word.guessed() && miss < 8);

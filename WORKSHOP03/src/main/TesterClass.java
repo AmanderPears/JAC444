@@ -1,11 +1,10 @@
-package noUI;
+package main;
 
 import java.util.Scanner;
 
 import tasks.*;
 
-public class Main {
-
+public class TesterClass {
 	/** Main entry point for workshop tasks */
 	public static void main(String[] args) {
 
@@ -17,13 +16,13 @@ public class Main {
 			choice = 0;
 			// Decorations
 			// printHorizontalLine();
-			System.out.println("Workshop - 2");
+			System.out.println("Workshop - 3");
 			printHorizontalLine();
 
-			System.out.println("List of Tasks for this workshop:\n");
-			System.out.println("1. Task 1 - Hangman");
-			System.out.println("2. Task 2 - Locator");
-			System.out.println("3. Task 3 - CardNumber checker");
+			System.out.println("Testers for workshop 3:\n");
+			System.out.println("1. Test 1 - Complex Numbers");
+			System.out.println("2. Test 2 - Bank Chain");
+			System.out.println("3. Test 3 - Objects");
 			System.out.println("4. EXIT this program\n");
 
 			while (choice < 1 || choice > 4) {
