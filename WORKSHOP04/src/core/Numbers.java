@@ -3,10 +3,11 @@ package core;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Numbers {
 
-	public static void generateNumberCombos() throws IOException {
+	public static void generateNumberCombos(Scanner in) throws IOException {
 
 		System.out.println("Generating number text combos ...\n");
 
@@ -26,25 +27,54 @@ public class Numbers {
 			}
 			System.out.println();
 		}
+		// set 0 and 1
+		alphaList[0] = new int[1];
+		alphaList[0][0] = 48;
+		alphaList[1] = new int[1];
+		alphaList[1][0] = 49;
+
 		System.out.println();
 
 		// generate phonenumber
-		int totalCombo = 1;
+//		int totalCombo = 1;
+//
+//		final int NUM_OF_DIGITS = 7;
+//		int numList[] = new int[NUM_OF_DIGITS];
+//		System.out.print("Phone number: ");
+//		for (int i = 0; i < NUM_OF_DIGITS; i++) {
+//			numList[i] = (int) (2 + Math.random() * 8);
+//			System.out.print(numList[i] + " ");
+//
+//			totalCombo *= alphaList[numList[i]].length;
+//		}
+//		System.out.println("\nTotal combinations: " + totalCombo);
 
+		// get phonenumber from input
 		final int NUM_OF_DIGITS = 7;
-		int numList[] = new int[NUM_OF_DIGITS];
-		System.out.print("Phone number: ");
-		for (int i = 0; i < NUM_OF_DIGITS; i++) {
-			numList[i] = (int) (2 + Math.random() * 8);
-			System.out.print(numList[i] + " ");
+		int num = 0, totalCombo = 1, numList[] = new int[NUM_OF_DIGITS];
 
+		// get valid integer input
+		do {
+			System.out.print("Enter the 7 digit phone number: ");
+			while (!in.hasNextInt()) {
+				System.out.print("Enter the 7 digit phone number: ");
+				in.hasNext();
+			}
+			num = in.nextInt();
+
+		} while (num < 0 || num > 9999999);
+
+		// prepare array
+		for (int i = 6; i >= 0; --i) {
+			numList[i] = num % 10;
+			num /= 10;
 			totalCombo *= alphaList[numList[i]].length;
 		}
 		System.out.println("\nTotal combinations: " + totalCombo);
 
 		// try writing
 		StringBuilder sb = new StringBuilder();
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter("ajpears_w4_output.txt"))) {
 			for (int one = 0; one < alphaList[numList[0]].length; one++) {
 				for (int two = 0; two < alphaList[numList[1]].length; two++) {
 					for (int three = 0; three < alphaList[numList[2]].length; three++) {
@@ -81,7 +111,7 @@ public class Numbers {
 			bw.close();
 		} // end try
 
-		System.out.println("\nList generated and printed to file 'output.txt'.");
+		System.out.println("\nList generated and printed to file 'ajpears_w4_output.txt'.");
 	}
 
 	static StringBuilder reuseStringBuilder(final StringBuilder sb) {

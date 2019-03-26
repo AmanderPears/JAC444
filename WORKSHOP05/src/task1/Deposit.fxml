@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="358.0" maxWidth="252.0" minHeight="358.0" minWidth="252.0" prefHeight="358.0" prefWidth="252.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="task1.DepositController">
+   <children>
+      <VBox minHeight="358.0" minWidth="252.0" prefHeight="358.0" prefWidth="252.0" spacing="30.0">
+         <children>
+            <Label fx:id="infoLabel" prefHeight="0.0" prefWidth="224.0" text="Enter amount to be deposited" underline="true" wrapText="true">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Label>
+            <HBox spacing="20.0">
+               <children>
+                  <Label text="Account ID:">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="idLabel" text="Label" />
+               </children>
+            </HBox>
+            <HBox spacing="20.0">
+               <children>
+                  <Label text="Balance:">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Label>
+                  <Label fx:id="balanceLabel" text="Label" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="48.0" prefWidth="232.0" spacing="20.0">
+               <children>
+                  <Label prefHeight="5.0" prefWidth="52.0" text="Amount:" wrapText="true" />
+                  <TextField fx:id="amountFld" prefHeight="27.0" prefWidth="117.0" />
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#depositBtnAction" text="Deposit" />
+            <Separator />
+            <HBox alignment="BASELINE_RIGHT">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#backBtnAction" text="Back" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

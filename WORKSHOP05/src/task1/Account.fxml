@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="358.0" maxWidth="252.0" minHeight="358.0" minWidth="252.0" prefHeight="358.0" prefWidth="252.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="task1.AccountController">
+	<children>
+		<VBox prefHeight="358.0" prefWidth="252.0" spacing="25.0">
+			<children>
+				<Label fx:id="welcomeLabel" text="Welcome">
+					<VBox.margin>
+						<Insets />
+					</VBox.margin>
+					<font>
+						<Font name="System Bold" size="18.0" />
+					</font>
+				</Label>
+				<Label text="What would you like to do?" textFill="#545353" />
+				<Button mnemonicParsing="false" onAction="#checkBalanceButtonAction" text="Check Balance" />
+				<Button mnemonicParsing="false" onAction="#withdrawBtnAction" text="Withdraw Money" />
+            <Button mnemonicParsing="false" onAction="#depositBtnAction" text="Deposit Money" />
+				<Button mnemonicParsing="false" onAction="#exitAcctAction" text="Exit Account" />
+			</children>
+			<padding>
+				<Insets bottom="40.0" left="40.0" right="40.0" top="40.0" />
+			</padding>
+		</VBox>
+	</children>
+</AnchorPane>
