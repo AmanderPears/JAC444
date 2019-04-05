@@ -23,62 +23,57 @@ public class QuizController {
 		addFld.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				if ((addFld.getText() != null) && (addFld.getText().length() > 0) && newValue.compareTo(".") != 0
-						&& newValue.compareTo("-") != 0 && Main.answers.contains(Double.parseDouble(newValue))) {
-					Main.resBool[0] = true;
-					addFld.setDisable(true);
-				} else {
-					Main.resBool[0] = false;
-				}
 
-				update();
+				checkFld(addFld, 0, newValue);
+/*
+ * old ugly and buggy method for checking below
+ */
+//				if ((addFld.getText() != null) && (addFld.getText().length() > 0) && newValue.compareTo(".") != 0
+//						&& newValue.compareTo("-") != 0 && Main.answers.contains(Double.parseDouble(newValue))) {
+//					Main.resBool[0] = true;
+//					addFld.setDisable(true);
+//				} else {
+//					Main.resBool[0] = false;
+//				}
+
+//				update();
 			}
 		});
 
 		subFld.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				if ((subFld.getText() != null) && (subFld.getText().length() > 0) && newValue.compareTo(".") != 0
-						&& newValue.compareTo("-") != 0 && (Main.answers.contains(Double.parseDouble(newValue)))) {
-					Main.resBool[1] = true;
-					subFld.setDisable(true);
-				} else {
-					Main.resBool[1] = false;
-				}
 
-				update();
+				checkFld(subFld, 1, newValue);
 			}
 		});
 
 		mulFld.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				if ((mulFld.getText() != null) && (mulFld.getText().length() > 0) && newValue.compareTo(".") != 0
-						&& newValue.compareTo("-") != 0 && (Main.answers.contains(Double.parseDouble(newValue)))) {
-					Main.resBool[2] = true;
-					mulFld.setDisable(true);
-				} else {
-					Main.resBool[2] = false;
-				}
-
-				update();
+				checkFld(mulFld, 2, newValue);
 			}
 		});
 
 		divFld.textProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				if ((divFld.getText() != null) && (divFld.getText().length() > 0) && newValue.compareTo(".") != 0
-						&& newValue.compareTo("-") != 0 && (Main.answers.contains(Double.parseDouble(newValue)))) {
-					Main.resBool[3] = true;
-					divFld.setDisable(true);
-				} else {
-					Main.resBool[3] = false;
-				}
-
-				update();
+				checkFld(divFld, 3, newValue);
 			}
 		});
+	}
+
+	void checkFld(TextField tf, int i, String s) {
+		try {
+			if (Main.answers.contains(Double.parseDouble(s))) {
+				Main.resBool[i] = true;
+				tf.setDisable(true);
+			}
+		} catch (Exception e) {
+			Main.resBool[i] = false;
+		}
+
+		update();
 	}
 
 	@FXML

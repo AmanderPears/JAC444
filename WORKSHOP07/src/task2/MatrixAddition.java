@@ -1,5 +1,7 @@
 package task2;
 
+import java.util.Scanner;
+
 public class MatrixAddition {
 
 	public static double[][] sequentialAdd(double[][] a, double[][] b) throws Exception {
@@ -60,13 +62,6 @@ public class MatrixAddition {
 			// start threads
 			t1.start();
 			t2.start();
-
-//			try {
-//				t1.join();
-//				t2.join();
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
 		}
 
 		return result;
@@ -83,8 +78,8 @@ public class MatrixAddition {
 		System.out.println();
 	}
 
-	static double[][] getBigMat() {
-		final int outer = 2000, inner = 2000;
+	static double[][] getBigMat(int out, int in) {
+		final int outer = out, inner = in;
 		double[][] result = new double[outer][inner];
 
 		Thread t1 = new Thread() {
@@ -112,44 +107,74 @@ public class MatrixAddition {
 		return result;
 	}
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	static int prompt(Scanner in) {
+		int i = 0;
+		while (i < 1) {
+			while (!in.hasNextInt()) {
+				System.out.print("Please enter a valid integer: ");
+				in.next();
+			}
+			i = in.nextInt();
+		}
+		return i;
+	}
 
-		double a[][] = getBigMat();
-		double b[][] = getBigMat();
+	public static void main(String[] args, Scanner in) { // TODO Auto-generated method stub
 
-		System.out.print("a: ");
-		// printMatrix(a);
-		System.out.print("b: ");
-		// printMatrix(b);
+		// welcome and prompt for array dimensions
+		System.out.println("Enter dimensions for the two matrices\n");
 
-		///////////////////
-		System.out.println("Testing sequential matrix addition");
-		// System.out.print("a+b= ");
+		System.out.print("Enter outer size: ");
+		int outer = prompt(in);
+
+		System.out.print("Enter inner size: ");
+		int inner = prompt(in);
+
+		// declare and initialize array with given dimensions
+		double[][] a = getBigMat(outer, inner), b = getBigMat(outer, inner);
+
+		// start sequential matrix addition
+		System.out.println("\nTesting sequential matrix addition");
 		long Start = System.nanoTime();
 
 		try {
-			// printMatrix(sequentialAdd(a, b));
 			sequentialAdd(a, b);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		long End = System.nanoTime();
-		System.out.println("Time taken: " + ((End - Start) / 1000000.0) + " ms");
 
-		/////////////
-		System.out.println("Testing parallel matrix addition");
-		// System.out.print("a+b= ");
+		// calculate time taken
+		long End = System.nanoTime();
+		double seqTime = (End - Start) / 1000000.0;
+		System.out.println("Time taken: " + seqTime + " ms");
+
+		///////////
+		// start Parallel matrix addition
+		System.out.println("\nTesting parallel matrix addition");
 
 		Start = System.nanoTime();
 		try {
-			// printMatrix(parallelAdd(a, b));
 			parallelAdd(a, b);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+
+		// calculate time taken
 		End = System.nanoTime();
-		System.out.println("Time taken: " + ((End - Start) / 1000000.0) + " ms");
+		double parTime = (End - Start) / 1000000.0;
+		System.out.println("Time taken: " + parTime + " ms");
+
+		// print comparison results
+		System.out.format("\n============================\n");
+		if ((seqTime - parTime) > 0)
+			System.out.format("Threading time saved: %.2fms\n", seqTime - parTime);
+		else
+			System.out.format("Threading was slower, took additional: %.2fms\n", parTime - seqTime);
+		System.out.format("============================\n");
+
+		// clear arrays
+		a = null;
+		b = null;
 
 	}
 

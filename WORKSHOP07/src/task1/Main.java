@@ -39,6 +39,7 @@ public class Main extends Application {
 		}
 
 		// add
+		answers.clear();
 		answers.add(Double.parseDouble(String.format("%.2f", (x + y))));
 		answers.add(Double.parseDouble(String.format("%.2f", (x - y))));
 		answers.add(Double.parseDouble(String.format("%.2f", (x * y))));

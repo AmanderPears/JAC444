@@ -2,11 +2,12 @@ package extra;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Eight_Queens_Puzzle {
 
-	int numOfCols = 16, numOfRows = 16;
+	int numOfCols = 8, numOfRows = 8;
 	HashMap<QPoint, Boolean> qPoints = new HashMap<QPoint, Boolean>();
 	QPoint tempPoint = new QPoint(0, 0);
 
@@ -108,7 +109,10 @@ public class Eight_Queens_Puzzle {
 				|| rowMatch(val);
 	}
 
-	public Eight_Queens_Puzzle() {
+	public Eight_Queens_Puzzle(int val) {
+		numOfCols = val;
+		numOfRows = val;
+		
 		initialize();
 
 		int total = 0, round = 0, count = 0;
@@ -127,14 +131,31 @@ public class Eight_Queens_Puzzle {
 			}
 			round++;
 
-		} while (count < 16);
+		} while (count < val);
 		display();
 		System.out.println("total tries: " + total);
 
 	}
 
+	static int prompt(Scanner in) {
+		int i = 0;
+		while (i < 1) {
+			while (!in.hasNextInt()) {
+				System.out.print("Enter a valid integer: ");
+				in.next();
+			}
+			i = in.nextInt();
+		}
+		return i;
+	}
+
 	public static void main(String[] args) {
-		new Eight_Queens_Puzzle();
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter game dimensions:");
+		System.out.print ("Enter number of columns and rows: ");
+		int val = prompt(in);
+
+		new Eight_Queens_Puzzle(val);
 
 	}
 
